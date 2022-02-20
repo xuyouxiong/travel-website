@@ -1,0 +1,100 @@
+.top_search {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0px;
+}
+.search-title {
+    color: #333;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.search-content {
+    display: flex;
+    margin: 10px 0px;
+    width: 100%;
+}
+
+.search_name{
+    height: 46px;
+    display: flex;
+    padding: 5px 5px;
+    
+}
+
+.input-hotel-name {
+    height: 46px;
+}
+
+.search_start {
+    height: 46px;
+    display: flex;
+    padding: 5px 5px;
+}
+
+.input-hotel-startdate {
+    height: 46px;
+}
+
+.search_end {
+    height: 46px;
+    display: flex;
+    padding: 5px 5px;
+}
+
+.input-hotel-enddate {
+    height: 46px;
+}
+
+.submit-btn {
+    width: 46px;
+    height: 46px;   
+    margin: 5px 5px;
+}
+
+.hotel-li {
+    display: flex;
+    margin: 10px 5px;
+    cursor: pointer;
+}
+
+.hotel-image {
+    margin-right: 5px;
+}
+.hotel-img {
+    width: 360px;
+    border-radius: 5px;
+
+}
+
+.info-content {
+    padding-left: 5px;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+}
+
+.title {
+    color: #666;
+    line-height: 30px;
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.location {
+    color: #666;
+    line-height: 20px;
+    font-size: 12px;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.lowprice {
+    font-weight: bold;
+    line-height: 24px;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Microsoft Yahei';
+    color: #ff8a00
+}

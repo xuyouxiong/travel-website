@@ -1,0 +1,69 @@
+.room-li {
+    display: flex;
+    margin: 10px 5px;
+}
+
+.room-wrap {
+    width: 100%;
+    display: flex;
+    padding: 5px 5px;
+    justify-content: space-between;
+}
+
+.room-image {
+    margin-right: 10px;
+}
+
+.room-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.room-title{
+    display: inline-block;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 18px;
+}
+
+.room-size {
+    display: inline-block;
+    white-space: nowrap;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    height: 20px;
+    font-size: 12px;
+    margin-bottom: 20px;
+
+}
+
+.room-price {
+    display: inline-block;
+    color: #ff8a00;
+    font-size: 20px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+}
+
+.rmb {
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    height: 20px;
+    font-size: 12px;
+    margin-bottom: 20px;
+    color: #666;
+}
+.info-wrap {
+    display: flex;
+}
+
+.order-btn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    /* border: 1px solid red; */
+    color: #ffc300;
+}

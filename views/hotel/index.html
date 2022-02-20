@@ -1,0 +1,114 @@
+<!--
+ * @Description: 
+ * @version: 
+ * @Author: SunDuncan
+ * @Date: 2022-02-17 15:12:06
+ * @LastEditors: SunDuncan
+ * @LastEditTime: 2022-02-18 16:47:02
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>四季有你-酒店</title>
+    <link href="/styles/base.css" rel="stylesheet" type="text/css">
+    <link href="/styles/travelnotes.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/jquery/jquery.js"></script>
+    <script type="text/javascript" src="/js/system/travelnotes.js"></script>
+    <link href="/js/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/js/plugins/jqPaginator/jqPagination.css" rel="stylesheet" type="text/css">
+    <link href="/js/bootstrap/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/plugins/messager/jquery.bootstrap.min.js"></script>
+    <script src="/js/vue/md5.js"></script>
+    <script type="text/javascript" src="/js/plugins/jqPaginator/jq-paginator.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap/js/bootstrap-datepicker.js"></script>
+    <script src="/js/plugins/js-cookie/js.cookie.min.js"></script>
+    <script type="text/javascript" src="/js/vue/common.js"></script>
+    <link href="/styles/hotel_index.css" rel="stylesheet" type="text/css">
+    
+</head>
+
+
+<body>
+<div id="navbar">
+    <!--导航栏-->
+    <script>
+        var currentNav = "hotel";
+        $('#navbar').load('/views/common/navbar.html');
+    </script>
+</div>
+<div class="wrapper" style="padding-top: 10px" id="app">
+   <form class="top_search">
+        <div class="search-title">
+            订酒店
+        </div>
+        <div class="search-content">
+            <div class="form-group search_name">
+                <input type="text" value="" name="hotel_name" class="form-control input-hotel-name" placeholder="酒店名称">
+            </div>
+            <div class="form-group search_start">
+                <input type="text" value="" name="startdate" class="form-control input-hotel-startdate" placeholder="入住时间">
+            </div>
+            <div class="form-group search_end">
+                <input type="text" value="" name="enddate" class="form-control input-hotel-enddate" placeholder="离店时间">
+            </div>
+            <button type="submit" class="btn btn-default submit-btn">🔍</button>
+        </div>
+   </form>
+   <div class="hotel-list">
+        <ul>
+            <li class="hotel-li" @click="hotelDetail(1)">
+                <div class="hotel-image">
+                    <img src="/images/hotel_test.jpeg" alt="图片暂未加载" class="hotel-img">
+                </div>
+                <div class="info-content">
+                    <div class="title">
+                        酒店
+                    </div>
+                    <div class="location">
+                        地点
+                    </div>
+                    <div class="lowprice">
+                        RMB 12起
+                    </div>
+                </div>
+            </li>
+            <li class="hotel-li"  @click="hotelDetail(2)">
+                <div class="hotel-image">
+                    <img src="/images/hotel_test.jpeg" alt="图片暂未加载" class="hotel-img">
+                </div>
+                <div class="info-content">
+                    <div class="title">
+                        酒店
+                    </div>
+                    <div class="location">
+                        地点
+                    </div>
+                    <div class="lowprice">
+                        RMB 12起
+                    </div>
+                </div>
+            </li>
+            
+        </ul>
+   </div>
+</div>
+<div class="footer" id="footer">
+    <script>
+        $('#footer').load('/views/common/footer.html');
+    </script>
+</div>
+</body>
+<script src="/js/vue/vue.min.js"></script>
+<script src="/js/vue/system/hotel/index.js"></script>
+<script>
+    $('.input-hotel-startdate').datepicker({
+        language: 'zh-CN'
+    })
+
+    $('.input-hotel-enddate').datepicker({
+        language: 'zh-CN'
+    })
+</script>
+</html>

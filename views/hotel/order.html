@@ -1,0 +1,173 @@
+
+<!--
+ * @Description: 
+ * @version: 
+ * @Author: SunDuncan
+ * @Date: 2022-02-17 15:12:06
+ * @LastEditors: SunDuncan
+ * @LastEditTime: 2022-02-18 19:11:50
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>四季有你-酒店</title>
+    <link href="/styles/base.css" rel="stylesheet" type="text/css">
+    <link href="/styles/travelnotes.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/jquery/jquery.js"></script>
+    <script type="text/javascript" src="/js/system/travelnotes.js"></script>
+    <link href="/js/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/js/plugins/jqPaginator/jqPagination.css" rel="stylesheet" type="text/css">
+    <link href="/js/bootstrap/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/plugins/messager/jquery.bootstrap.min.js"></script>
+    <script src="/js/vue/md5.js"></script>
+    <script type="text/javascript" src="/js/plugins/jqPaginator/jq-paginator.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap/js/bootstrap-datepicker.js"></script>
+    <script src="/js/plugins/js-cookie/js.cookie.min.js"></script>
+    <script type="text/javascript" src="/js/vue/common.js"></script>
+    <style type="text/css">
+       .order-wrap {
+            display: flex;
+            flex-direction: column;
+       }
+
+       .read-info {
+            display: flex;
+            flex-direction: column;
+       }
+
+       .hotel-name {
+        font-size: 30px;
+        color: #666;
+        font-weight: 45;
+        margin-bottom: 10px;
+       }
+
+       .room-info {
+        padding-top: 5px;
+        padding-bottom: 5px;
+       }
+
+       .room-name {
+        font-size: 16px;
+        color: black;
+        margin-bottom: 3px;
+       }
+
+       .room-size {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 3px;
+       }
+
+       .time {
+        font-weight: 500;
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: #0f294d;
+        font-weight: 700;
+        letter-spacing: 0;
+        margin-top: 16px;
+       }
+
+       .room-tip {
+        padding: 10px 10px;
+        border-top: 1px solid grey;
+        color: #0f294d;
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 0;
+        line-height: 1.3;
+       }
+
+
+       .form-info {
+        margin-top: 30px;
+       }
+
+       .form-name {
+        margin-bottom: 30px;
+       }
+
+       .form-phone {
+        margin-bottom: 30px;
+       }
+
+       .confirm-button {
+        float: right;
+        border-radius: 5px;
+       }
+
+       .button-info {
+        color: #333;
+        background-color: #ff9500;
+        border-color: #ff9500;
+       }
+    </style>
+</head>
+
+
+<body>
+<div id="navbar">
+    <!--导航栏-->
+    <script>
+        var currentNav = "hotel";
+        $('#navbar').load('/views/common/navbar.html');
+    </script>
+</div>
+<div class="wrapper" style="padding-top: 10px;" id="app">
+    <div class="order-wrap">
+        <div class="read-info"> 
+            <div class="hotel-name">酒店</div>
+            <div class="room-info">
+                <div class="room-name">温馨大床房（有内窗）B</div>
+                <div class="room-size">20-25㎡ 大床 有窗</div>
+                <div class="time">2022-2-18 ~ 2022-2-19</div>
+                <div class="room-tip">
+                    1.根据防疫部门通知，所有省外来（返）苏州人员，需持健康码绿码和 48 小时内核酸检测阴性证明登记住宿。请在下单前与酒店确认接待政策，以免影响您的入住。<br/>
+                    2.该房型允许携带儿童入住。<br/>
+                    3.该房型不提供加婴儿床。
+                </div>
+            </div>
+            
+        </div>
+
+        <form class="form-info">
+                <div class="form-name">
+                    <input class="form-control" type="text" placeholder="住客姓名" value="" name="name">
+                </div>
+                <div class="form-phone">
+                    <input class="form-control" type="text" placeholder="住客电话" value="" name="phone">
+                </div>
+                <div class="form-name">
+                    <input class="form-control" type="text" placeholder="身份证号码" value="" name="name">
+                </div>
+
+                <div class="confirm-button">
+                    <button type="submit" class="btn btn-default button-info">去支付</button>
+                </div>
+            </form>
+       
+
+        
+    </div>
+</div>
+<div class="footer" id="footer">
+    <script>
+        $('#footer').load('/views/common/footer.html');
+    </script>
+</div>
+</body>
+<script src="/js/vue/vue.min.js"></script>
+<script src="/js/vue/system/hotel/detail.js"></script>
+<script>
+    $('.input-hotel-startdate').datepicker({
+        language: 'zh-CN'
+    })
+
+    $('.input-hotel-enddate').datepicker({
+        language: 'zh-CN'
+    })
+</script>
+</html>

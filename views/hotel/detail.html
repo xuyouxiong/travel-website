@@ -1,0 +1,81 @@
+
+<!--
+ * @Description: 
+ * @version: 
+ * @Author: SunDuncan
+ * @Date: 2022-02-17 15:12:06
+ * @LastEditors: SunDuncan
+ * @LastEditTime: 2022-02-20 21:05:39
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>四季有你-酒店</title>
+    <link href="/styles/base.css" rel="stylesheet" type="text/css">
+    <link href="/styles/hotel_detail.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/jquery/jquery.js"></script>
+    <script type="text/javascript" src="/js/system/travelnotes.js"></script>
+    <link href="/js/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/js/plugins/jqPaginator/jqPagination.css" rel="stylesheet" type="text/css">
+    <link href="/js/bootstrap/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/plugins/messager/jquery.bootstrap.min.js"></script>
+    <script src="/js/vue/md5.js"></script>
+    <script type="text/javascript" src="/js/plugins/jqPaginator/jq-paginator.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap/js/bootstrap-datepicker.js"></script>
+    <script src="/js/plugins/js-cookie/js.cookie.min.js"></script>
+    <script type="text/javascript" src="/js/vue/common.js"></script>
+</head>
+
+
+<body>
+<div id="navbar">
+    <!--导航栏-->
+    <script>
+        var currentNav = "hotel";
+        $('#navbar').load('/views/common/navbar.html');
+    </script>
+</div>
+<div class="wrapper" style="padding-top: 10px;
+                            width: 60%;
+                            margin-left: auto;
+                            margin-right: auto;" id="app">
+   <ul>
+    <li class="room-li" v-for="n in 10">
+        <div class="room-wrap">
+            <div  class="info-wrap">
+                <div class="room-image">
+                    <img src="/images/hotel-room.jpeg" alt="无法加载图片">
+                </div>
+                <div class="room-info">
+                    <span class="room-title">温馨大床房（有内窗）B</span>
+                    <span class="room-size">20-25㎡ 大床 有窗</span>
+                    <span class="room-price">200<span class="rmb">元</span></span>
+                </div>
+            </div>
+            <div class="order-btn" @click="confirmOrder(n)">
+                <span class="order-text">订购</span>
+            </div>
+        </div>
+   </li>
+   </ul>
+</div>
+<div class="footer" id="footer">
+    <script>
+        $('#footer').load('/views/common/footer.html');
+    </script>
+</div>
+</body>
+<script src="/js/vue/vue.min.js"></script>
+<script src="/js/vue/system/hotel/detail.js"></script>
+<script>
+    $('.input-hotel-startdate').datepicker({
+        language: 'zh-CN'
+    })
+
+    $('.input-hotel-enddate').datepicker({
+        language: 'zh-CN'
+    })
+</script>
+</html>

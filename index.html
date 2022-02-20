@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>四季有你-首页</title>
+    <link href="/styles/base.css" rel="stylesheet" type="text/css">
+    <link href="/styles/index.css" rel="stylesheet" type="text/css">
+    <link href="/js/plugins/jqPaginator/jqPagination.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/jquery/jquery.js"></script>
+    <script type="text/javascript" src="/js/plugins/jquery-form/jquery.form.js"></script>
+    <script type="text/javascript" src="/js/plugins/jqPaginator/jq-paginator.min.js"></script>
+    <script src="/js/vue/md5.js"></script>
+    <script src="/js/plugins/js-cookie/js.cookie.min.js"></script>
+    <script type="text/javascript" src="/js/vue/common.js"></script>
+    <script type="text/javascript" src="/js/system/index/index.js"></script>
+
+</head>
+<body>
+<div id="navbar">
+    <!--导航栏-->
+    <script>
+        var currentNav = "index";
+        $('#navbar').load('/views/common/navbar.html');
+    </script>
+</div>
+
+<div  id="app" v-cloak>
+    <div class="mfw-focus" id="_j_mfw_focus">
+        <div class="show-slider" style="height: 450px;">
+            <ul class="show-image">
+
+                <li v-if="banners.length" v-for="(b, index) in banners" :class="index==0?'first':''" class="show_image" :data-id="index">
+                    <a :href="'/views/travel/detail.html?id='+b.refid" class="show-pic">
+                        <img :src="b.coverUrl">
+                    </a>
+                    <a href="javascript:;" class="show-title dark">
+                        <div class="date" v-html="day">
+                        </div>
+                        <h3>{{b.title}}</h3>
+                    </a>
+                </li>
+
+            </ul>
+            <ul class="show-nav">
+                <li v-if="banners.length" v-for="(b, index) in banners"   :class="index==0?'active':''"  class="show_nav">
+                    <a href="javascript:"  @click="changActive(index,$event)" >
+                        <img :src="b.coverUrl" height="62" width="110">
+                        <span></span>
+                    </a>
+                </li>
+            </ul>
+            <a class="show-more" target="_blank" href="javascript:;">历历在目</a>
+        </div>
+        <div class="search-container" id="_j_index_search">
+
+            <div class="search-group">
+                <div class="searchtab" id="_j_index_search_tab">
+                    <ul class="clearfix">
+                        <li class="tab-selected" data-index="-1"><i></i>全部</li>
+                        <li data-index="0"><i></i>目的地</li>
+                        <li data-index="1"><i></i>攻略</li>
+                        <li data-index="2"><i></i>游记</li>
+                        <li data-index="3"><i></i>找人</li>
+                    </ul>
+                </div>
+                <div class="searchbar" id="_j_index_search_bar_all">
+                    <div class="search-wrapper">
+                        <div class="search-input">
+                            <input name="keyword" id="keyword" type="text" placeholder="搜目的地/攻略/游记/用户" id="_j_index_search_input_all" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="search-button" id="_j_index_search_btn_all">
+                        <a role="button" href="javascript:" @click="searchClick"><i class="icon-search"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="mfw-container clearfix">
+        <div class="mfw-wrapper">
+            <div class="mfw-travelnotes">
+                <div class="navbar clearfix">
+                    <ul class="tn-nav" id="_j_tn_nav">
+                        <li class="_j_gs_tab tn-nav-hot active">
+                            <a href="javascript:void(0);" @click="orderBy('viewnum')" >热门游记</a>
+                        </li>
+                        <li class="_j_gs_tab tn-nav-new">
+                            <a href="javascript:void(0);" @click="orderBy('create_time')">最新发表</a>
+                        </li>
+                    </ul>
+                    <div class="tn-write"><a class="btn-add" href="views/travel/input.html" target="_blank" rel="nofollow"><i></i>写游记</a>
+                    </div>
+                </div>
+                <div class="pagelet-block">
+                    <form method="post" id="searchForm">
+                        <input type="hidden" name="orderBy" value="viewnum" id="orderType">
+                        <div id="_j_tn_content">
+                            <!--游记-->
+                            <div class="tn-list">
+                                <div class="tn-item clearfix" v-for="t in page.records">
+                                    <div class="tn-image">
+                                        <a href="javascript:;" target="_blank">
+                                            <img :src="t.coverUrl" style="display: inline;">
+                                        </a>
+                                    </div>
+                                    <div class="tn-wrapper">
+                                        <dl>
+                                            <dt>
+                                                <a :href="'/views/travel/detail.html?id='+t.id" target="_blank">{{t.title}}</a>
+                                            </dt>
+                                            <dd>
+                                                <a :href="'/views/travel/detail.html?id='+t.id"  target="_blank">
+                                                    {{t.summary | subStr}}
+                                                </a>
+                                            </dd>
+                                        </dl>
+                                        <div class="tn-extra">
+                                            <span class="tn-ding">
+                                                <a class="btn-ding" href="javascript:;" data-japp="articleding"
+                                                   data-iid="12451790" data-vote="2157" rel="nofollow"></a>
+                                                <em id="topvote12451790">{{t.thumbsupnum}}</em>
+                                            </span>
+                                            <span class="tn-place"><i></i>
+                                                <a href="javascript:void(0);" class="_j_gs_item" rel="nofollow">
+                                                    {{t.destName}}</a>，by
+                                            </span>
+                                            <span class="tn-user">
+                                                <a :href="'/views/personal/homepage.html?ownerId='+t.author.id" target="_blank" rel="nofollow">
+                                                    <img :src="t.author.headImgUrl">
+                                                    {{t.author.nickname}}
+                                                </a>
+                                            </span>
+                                            <span class="tn-nums"><i></i>{{t.viewnum}}/{{t.favornum}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br><br>
+                            <!--分页-->
+                            <div style="float: right" >
+                                <div style="float: left;" ><span style="line-height:30px"> 共{{page.pages}}页 / {{page.total}}条&nbsp;&nbsp;&nbsp;</span></div>
+                                <div id="pagination" class="jq-pagination" style="display: inline;"></div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="mfw-aside">
+            <div class="asidebox safety-prevention">
+                <a style="display:block;margin-top:5px;" href="/travel_advise/index" target="_blank">
+                    <img src="http://images.mafengwo.net/images/safety-prevention/index-link.png" width="218" height="31">
+                </a>
+            </div>
+            <div class="asidebox box-gonglve">
+                <div class="asidebox-hd">
+                    <h2 class="hd-title">旅游攻略推荐</h2>
+                    <a class="hd-right" href="views/strategy/list.html">更多</a>
+                </div>
+            </div>
+
+        </div>
+      
+    </div>
+    </div>
+
+
+</div>
+
+
+
+<!--内容-->
+<div class="footer" id="footer">
+    <script>
+        $('#footer').load('/views/common/footer.html');
+    </script>
+</div>
+</body>
+<script src="/js/vue/vue.min.js"></script>
+<script src="/js/vue/system/index/index.js"></script>
+</html>

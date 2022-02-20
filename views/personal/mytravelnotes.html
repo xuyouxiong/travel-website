@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <link href="../../styles/base.css" rel="stylesheet" type="text/css">
+    <!-- <link href="../../styles/homepage.css" rel="stylesheet" type="text/css"> -->
+    <link href="/styles/mytravelnotes.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/plugins/jquery-form/jquery.form.js"></script>
+    <script type="text/javascript" src="/js/plugins/messager/jquery.bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/plugins/jqPaginator/jq-paginator.min.js"></script>
+    <script type="text/javascript" src="/js/system/common.js"></script>
+    <script type="text/javascript" src="/js/plugins/jquery-form/jquery.form.js"></script>
+    <script type="text/javascript" src="/js/plugins/jqPaginator/jq-paginator.min.js"></script>
+    <script src="/js/vue/md5.js"></script>
+   
+    <script src="/js/plugins/js-cookie/js.cookie.min.js"></script>
+    <script type="text/javascript" src="/js/vue/common.js"></script>
+    <script type="text/javascript" src="/js/system/homepage.js"></script>
+    <script>
+        //顶：点赞
+        function thumbup(tid) {
+            console.log(tid);
+            $.get("/travel/travelThumbup", {tid: tid}, function (data) {
+                if (data.success) {
+                    var id = '#topvote' + tid;
+                    $(id).html(data.data.thumbsupnum);
+                    popup("顶成功啦"); //
+
+                } else {
+                    if (data.code == 102) {
+                        popup(data.msg);
+                    } else {
+                        popup("今天你已经定过了"); //
+                    }
+
+                }
+            });
+        }
+
+    </script>
+</head>
+
+<body style="position: relative;">
+    <div id="navbar">
+        <!--导航栏-->
+        <script>
+            var currentNav = "index";
+            $('#navbar').load('/views/common/navbar.html');
+        </script>
+    </div>
+    <div id="app">
+        <div class="main">
+            <div class="banner">
+                <div class="banner_img banner_note" id="_j_banner">
+                </div>
+                <div class="tags_bar second_tags_bar">
+                    <div class="center clearfix">
+                        <div class="MAvatar clearfix">
+                            <div class="MAvaImg flt1">
+                                <img width="120" height="120" alt=""
+                                     :src="owner.headImgUrl">
+                            </div>
+                            <div class="MAvaEasyWord flt1">
+                                <span class="MAvaName">{{owner.nickname}}({{owner.city}})</span>
+                                <span class="MAvaLevel">Lv.{{owner.level}}</span>
+                            </div>
+                        </div>
+                        <ul class="flt2">
+                            <li><a class="tags_link" :href="'./homepage.html?ownerId='+owner.id" title="我的窝">我的窝</a></li>
+                            <li class="on"><a class="tags_link" href="/mine/mytravels" title="我的游记">我的游记</a></li>
+                            <li><a class="tags_link" href="/mine/review" title="我的点评">我的点评</a></li>
+                            <li id="_j_pathnav"><a class="tags_link" href="/mine/travelcollection" title="我的收藏">我的收藏</a></li>
+                            <li><a class="tags_link" id="order" href="javascript:;" title="我的订单">我的订单</a></li>
+                            <li><a class="tags_link" href="/mine/setting" title="设置">设置</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $("#order").click(function () {
+                    popup("没有做这个模块");
+                })
+            </script>
+            <div class="center clearfix">
+                <div class="side_bar note_side flt1">
+                    <div class="MUsers">
+                        <div class="MUsersTitle">最新访客</div>
+                        <div class="MUsersDetail">
+                            <div class="MUsersAtom">
+                                <ul class="clearfix"></ul>
+                            </div>
+                        </div>
+                        <div class="MUsersBehavior">
+                            <span>累计访问<i>0</i></span><span>今日<i>0</i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="content flt2">
+                    <div class="common_block my_notes">
+                        <div class="common_title clearfix">
+                            <div class="MAvaMore clearfix">
+                                <div class="MAvaNums">
+                                    <strong>${total}</strong>
+                                    <p>游记</p>
+                                </div>
+                                <div class="MAvaNums">
+                                    <strong>${commentTotal}</strong>
+                                    <p>回复</p>
+                                </div>
+                                <div class="MAvaNums last">
+                                    <strong>${viewnumTotal}</strong>
+                                    <p>阅读</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--高级查询--->
+                        <form class="form-inline" id="searchForm" action="/mine/mytravels" method="post">
+                            <input type="hidden" name="currentPage" id="currentPage" value="1">
+                        </form>
+                        <div id="article_list">
+                            <div class="notes_list">
+                                <ul>
+                                    <#if pageInfo ??>
+                                        <#list pageInfo.list as t>
+                                            <li data-order="${t_index + 1}" data-top="0">
+                                                <dl>
+                                                    <dt>
+                                                        <a href="/travel/detail?id=${t.id}" target="_blank"
+                                                           id="_j_coverlink_12894894"><img
+                                                                    src="${t.coverUrl}"
+                                                                    height="400" width="680" alt="封面"></a>
+                                                        <div class="hover_item">
+                                                            <div class="thumb_description">
+                                                                <strong>${t.dest.name}/</strong>
+                                                                <#if t.parentDest ??>
+                                                                    <#list t.parentDest as p>
+                                                                        <span>${p.name}/</span>
+                                                                    </#list>
+                                                                </#if>
+                                                            </div>
+                                                        </div>
+                                                    </dt>
+                                                    <dd>
+                                                        <div class="note_title clearfix">
+                                                            <div class="MDing">
+                                                                <span id="topvote${t.id}">${(t.vo.thumbsupnum)!}</span><a
+                                                                        role="button" onclick="thumbup(${t.id})"
+                                                                        data-japp="articleding"
+                                                                        rel="nofollow"
+                                                                        data-vote="0"
+                                                                        title="顶一下">顶</a>
+                                                            </div>
+                                                            <div class="note_info">
+                                                                <h3>
+                                                                    <a href="/travel/detail?id=${t.id}" target="_blank"
+                                                                       title="游记1">${t.title}</a></h3>
+                                                                <div class="note_more">
+        
+                                                                <span class="MInfoNum"><i
+                                                                            class="MIcoView"></i><em>${(t.vo.viewnum)!}</em></span>
+        
+                                                                    <span class="MInfoNum"><i
+                                                                                class="MIcoStar"></i><em>${(t.vo.favornum)!}</em></span>
+                                                                    <span class="time">${t.createTime?string('yyyy-MM-dd HH:mm:ss')}</span>
+                                                                </div>
+        
+                                                            </div>
+                                                        </div>
+                                                        <div class="note_word">
+                                                            ${t.summary!}
+                                                        </div>
+                                                    </dd>
+                                                </dl>
+                                            </li>
+                                        </#list>
+                                    </#if>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="footer" id="footer">
+    <script>
+        $('#footer').load('/views/common/footer.html');
+    </script>
+</div>
+</body>
+<script src="/js/vue/vue.min.js"></script>
+<script src="/js/vue/system/personal/mynote.js"></script>
+</html>
