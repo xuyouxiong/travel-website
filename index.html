@@ -28,7 +28,6 @@
     <div class="mfw-focus" id="_j_mfw_focus">
         <div class="show-slider" style="height: 450px;">
             <ul class="show-image">
-
                 <li v-if="banners.length" v-for="(b, index) in banners" :class="index==0?'first':''" class="show_image" :data-id="index">
                     <a :href="'/views/travel/detail.html?id='+b.refid" class="show-pic">
                         <img :src="b.coverUrl">
@@ -57,7 +56,7 @@
                 <div class="searchtab" id="_j_index_search_tab">
                     <ul class="clearfix">
                         <li class="tab-selected" data-index="-1"><i></i>全部</li>
-                        <li data-index="0"><i></i>目的地</li>
+                        <!-- <li data-index="0"><i></i>目的地</li> -->
                         <li data-index="1"><i></i>攻略</li>
                         <li data-index="2"><i></i>游记</li>
                         <li data-index="3"><i></i>找人</li>
