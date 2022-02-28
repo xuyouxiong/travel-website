@@ -4,7 +4,7 @@
  * @Author: SunDuncan
  * @Date: 2022-02-18 16:08:57
  * @LastEditors: SunDuncan
- * @LastEditTime: 2022-02-28 21:19:32
+ * @LastEditTime: 2022-02-28 22:37:55
  */
 var user = getUserInfo();
 var vue = new Vue({
@@ -12,15 +12,11 @@ var vue = new Vue({
     data:{
         page:{},
         user:{},
-        rooms: {}
-
-
+        info: {},
+        start_date: {},
+        end_date: {}
     },
     methods:{
-        confirmOrder(id) {
-            var param = getParams();
-            location.href = "./order.html?id=" + id + "&startDate=" + param['startDate'] + "&endDate=" + param['endDate'];
-        },
         orderChange:function (orderType) {
             var el = event.currentTarget;
             $(".orderBy").closest("div").removeClass("on");
@@ -46,21 +42,34 @@ var vue = new Vue({
         conditionChange:function(){
             this.commPage(1);
         },
-        getRooms() {
+        initData() {
             var param = getParams();
-            console.log(param)
-            ajaxGet('/room/query', {hotelId: param.id}, function(data) {
+            console.log('ss', param)
+            ajaxGet("/room/getDetail",{id: param.id}, function (data) {
+                console.log(data)
                 let datas = data.data
-                datas.forEach(element => {
-                    element.image = "http://localhost:8082" + element.image
-                });
-                vue.rooms = datas
+                datas.image = "http://localhost:8082" + datas.image
+                vue.info = datas
+                // vue.page = data.data;
+                vue.start_date = param.startDate
+                vue.end_date = param.endDate
             })
+        },
+        goPay() {
+            $("#modal").show()
+            setInterval(function() {
+                popup("支付成功了");
+                location.href = "/views/hotel/index.html"
+            }, 5000);
+
+        },
+        closePay() {
+            $("#modal").hide()
         }
     },
     mounted:function () {
         //游记分页
-        this.getRooms()
+        this.initData()
     }
 });
 

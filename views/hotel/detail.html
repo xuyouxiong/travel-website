@@ -5,7 +5,7 @@
  * @Author: SunDuncan
  * @Date: 2022-02-17 15:12:06
  * @LastEditors: SunDuncan
- * @LastEditTime: 2022-02-20 21:05:39
+ * @LastEditTime: 2022-02-28 19:17:30
 -->
 <!DOCTYPE html>
 <html>
@@ -42,19 +42,19 @@
                             margin-left: auto;
                             margin-right: auto;" id="app">
    <ul>
-    <li class="room-li" v-for="n in 10">
+    <li class="room-li" v-for="(item,index) in rooms">
         <div class="room-wrap">
             <div  class="info-wrap">
                 <div class="room-image">
-                    <img src="/images/hotel-room.jpeg" alt="无法加载图片">
+                    <img :src="item.image" alt="无法加载图片">
                 </div>
                 <div class="room-info">
-                    <span class="room-title">温馨大床房（有内窗）B</span>
-                    <span class="room-size">20-25㎡ 大床 有窗</span>
-                    <span class="room-price">200<span class="rmb">元</span></span>
+                    <span class="room-title">{{item.name}}</span>
+                    <span class="room-size">{{item.size}}</span>
+                    <span class="room-price">{{item.price}}<span class="rmb">元</span></span>
                 </div>
             </div>
-            <div class="order-btn" @click="confirmOrder(n)">
+            <div class="order-btn" @click="confirmOrder(item.id)">
                 <span class="order-text">订购</span>
             </div>
         </div>

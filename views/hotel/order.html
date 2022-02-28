@@ -5,7 +5,7 @@
  * @Author: SunDuncan
  * @Date: 2022-02-17 15:12:06
  * @LastEditors: SunDuncan
- * @LastEditTime: 2022-02-18 19:11:50
+ * @LastEditTime: 2022-02-28 22:17:22
 -->
 <!DOCTYPE html>
 <html>
@@ -104,6 +104,38 @@
         background-color: #ff9500;
         border-color: #ff9500;
        }
+
+       .modal {
+           z-index: 100;
+           display: none;
+           background-color: #000;
+           opacity: 0.8;
+       }
+
+       .modal_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100%;
+       }
+
+       .pay_image {
+
+       }
+
+       .image {
+
+       }
+       
+       .close {
+            margin-top: 20px;
+            color:#fff;
+       }
+
+       .close_text {
+
+       }
     </style>
 </head>
 
@@ -119,11 +151,11 @@
 <div class="wrapper" style="padding-top: 10px;" id="app">
     <div class="order-wrap">
         <div class="read-info"> 
-            <div class="hotel-name">酒店</div>
+            <div class="hotel-name">{{info.hotelName}}</div>
             <div class="room-info">
-                <div class="room-name">温馨大床房（有内窗）B</div>
-                <div class="room-size">20-25㎡ 大床 有窗</div>
-                <div class="time">2022-2-18 ~ 2022-2-19</div>
+                <div class="room-name">{{info.name}}</div>
+                <div class="room-size">{{info.size}}</div>
+                <div class="time">{{start_date}} ~ {{end_date}}</div>
                 <div class="room-tip">
                     1.根据防疫部门通知，所有省外来（返）苏州人员，需持健康码绿码和 48 小时内核酸检测阴性证明登记住宿。请在下单前与酒店确认接待政策，以免影响您的入住。<br/>
                     2.该房型允许携带儿童入住。<br/>
@@ -145,12 +177,17 @@
                 </div>
 
                 <div class="confirm-button">
-                    <button type="submit" class="btn btn-default button-info">去支付</button>
+                    <div class="btn btn-default button-info" @click="goPay()">去支付</div>
                 </div>
             </form>
-       
-
-        
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal_container">
+            <div class="pay_image">
+                <img src="/images/pay.jpg" alt="暂时没有图片" class="image">
+            </div>
+            <div class="close"><span class="close_text" @click="closePay()">关闭</span></div>
+        </div>
     </div>
 </div>
 <div class="footer" id="footer">
@@ -160,7 +197,7 @@
 </div>
 </body>
 <script src="/js/vue/vue.min.js"></script>
-<script src="/js/vue/system/hotel/detail.js"></script>
+<script src="/js/vue/system/hotel/order.js"></script>
 <script>
     $('.input-hotel-startdate').datepicker({
         language: 'zh-CN'

@@ -4,7 +4,7 @@
  * @Author: SunDuncan
  * @Date: 2022-02-17 15:12:06
  * @LastEditors: SunDuncan
- * @LastEditTime: 2022-02-18 16:47:02
+ * @LastEditTime: 2022-02-28 18:29:19
 -->
 <!DOCTYPE html>
 <html>
@@ -45,52 +45,37 @@
         </div>
         <div class="search-content">
             <div class="form-group search_name">
-                <input type="text" value="" name="hotel_name" class="form-control input-hotel-name" placeholder="酒店名称">
+                <input type="text" id="name" value="" name="hotel_name" class="form-control input-hotel-name" placeholder="酒店名称">
             </div>
             <div class="form-group search_start">
-                <input type="text" value="" name="startdate" class="form-control input-hotel-startdate" placeholder="入住时间">
+                <input type="text" id="startdate" value="" name="startdate" class="form-control input-hotel-startdate" placeholder="入住时间">
             </div>
             <div class="form-group search_end">
-                <input type="text" value="" name="enddate" class="form-control input-hotel-enddate" placeholder="离店时间">
+                <input type="text" id="enddate" value="" name="enddate" class="form-control input-hotel-enddate" placeholder="离店时间">
             </div>
-            <button type="submit" class="btn btn-default submit-btn">🔍</button>
+            <button type="button" class="btn btn-default submit-btn" @click="getHotels">🔍</button>
         </div>
    </form>
    <div class="hotel-list">
         <ul>
-            <li class="hotel-li" @click="hotelDetail(1)">
-                <div class="hotel-image">
-                    <img src="/images/hotel_test.jpeg" alt="图片暂未加载" class="hotel-img">
-                </div>
-                <div class="info-content">
-                    <div class="title">
-                        酒店
+            <div v-for="(item, i) in hotels">
+                <li class="hotel-li" @click="hotelDetail(item.id)">
+                    <div class="hotel-image">
+                        <img :src="item.image" alt="图片暂未加载" class="hotel-img">
                     </div>
-                    <div class="location">
-                        地点
+                    <div class="info-content">
+                        <div class="title">
+                            {{item.name}}
+                        </div>
+                        <div class="location">
+                            {{item.address}}
+                        </div>
+                        <div class="lowprice">
+                            RMB {{item.lowPrice}}起
+                        </div>
                     </div>
-                    <div class="lowprice">
-                        RMB 12起
-                    </div>
-                </div>
-            </li>
-            <li class="hotel-li"  @click="hotelDetail(2)">
-                <div class="hotel-image">
-                    <img src="/images/hotel_test.jpeg" alt="图片暂未加载" class="hotel-img">
-                </div>
-                <div class="info-content">
-                    <div class="title">
-                        酒店
-                    </div>
-                    <div class="location">
-                        地点
-                    </div>
-                    <div class="lowprice">
-                        RMB 12起
-                    </div>
-                </div>
-            </li>
-            
+                </li>
+            </div>
         </ul>
    </div>
 </div>
