@@ -4,7 +4,7 @@
  * @Author: SunDuncan
  * @Date: 2022-02-18 16:08:57
  * @LastEditors: SunDuncan
- * @LastEditTime: 2022-03-02 03:18:19
+ * @LastEditTime: 2022-03-02 03:46:00
  */
 var user = getUserInfo();
 var vue = new Vue({
@@ -57,7 +57,7 @@ var vue = new Vue({
         },
         goPay() {
             $("#modal").show()
-            // this.createOrder()
+            this.createOrder()
             setTimeout(function() {
                 popup("支付成功了");
             },5000)
