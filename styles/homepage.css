@@ -335,20 +335,8 @@ img {
     position: relative;
 }
 
-.banner .center {
-    height: 480px;
-}
-
 .flt1 {
     float: left;
-}
-
-.flt2 {
-    float: right;
-}
-
-.tags_bar ul {
-    float: right;
 }
 
 .tags_bar li {
@@ -763,9 +751,6 @@ img {
     margin-top: 18px;
 }
 
-.flt2 {
-    float: right;
-}
 
 .my_notes {
     padding-bottom: 30px;

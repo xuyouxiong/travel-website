@@ -1,67 +1,206 @@
+
+<!--
+ * @Description: 
+ * @version: 
+ * @Author: SunDuncan
+ * @Date: 2022-02-17 15:12:06
+ * @LastEditors: SunDuncan
+ * @LastEditTime: 2022-03-02 02:50:24
+-->
 <!DOCTYPE html>
-<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title></title>
+    <title>四季有你-酒店</title>
     <link href="/styles/base.css" rel="stylesheet" type="text/css">
-    <link href="/styles/travelspot.css" rel="stylesheet" type="text/css">
-    <link href="/styles/select.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/jquery/jquery.js"></script>
+    <script type="text/javascript" src="/js/system/travelnotes.js"></script>
+    <link href="/js/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/js/plugins/jqPaginator/jqPagination.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/plugins/jqPaginator/jq-paginator.min.js"></script>
-    <script type="text/javascript" src="/js/plugins/jquery-form/jquery.form.js"></script>
+    <link href="/js/bootstrap/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/plugins/messager/jquery.bootstrap.min.js"></script>
     <script src="/js/vue/md5.js"></script>
+    <script type="text/javascript" src="/js/plugins/jqPaginator/jq-paginator.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap/js/bootstrap-datepicker.js"></script>
     <script src="/js/plugins/js-cookie/js.cookie.min.js"></script>
     <script type="text/javascript" src="/js/vue/common.js"></script>
+    <style type="text/css">
+    .room-li {
+    display: flex;
+    margin: 10px 5px;
+}
 
+.room-wrap {
+    width: 100%;
+    display: flex;
+    padding: 5px 5px;
+    justify-content: space-between;
+}
+
+.room-image {
+    margin-right: 10px;
+    width: 175px;
+    height: 117px;
+}
+
+img {
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.room-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.room-title{
+    display: inline-block;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 18px;
+}
+
+.room-size {
+    display: inline-block;
+    white-space: nowrap;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    height: 20px;
+    font-size: 12px;
+
+}
+
+.room-price {
+    display: inline-block;
+    color: #ff8a00;
+    font-size: 20px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.rmb {
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    height: 20px;
+    font-size: 12px;
+    margin-bottom: 20px;
+    color: #666;
+}
+.info-wrap {
+    display: flex;
+}
+
+.order-btn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    /* border: 1px solid red; */
+    color: #ffc300;
+    padding: 15px 0px;
+}
+
+.summary {
+    color: grey;
+    font-size: 14px;
+}
+
+.btn-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn{
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.detail-modal {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+    </style>
 </head>
-<body >
+
+
+<body>
 <div id="navbar">
     <!--导航栏-->
     <script>
-        var currentNav = "destination";
+        var currentNav = "spots";
         $('#navbar').load('/views/common/navbar.html');
     </script>
 </div>
-<div id="app" v-cloak>
-    <div id="container" >
-        <div class="pagelet-block">
-            <div class="row row-placeList">
-                <div class="wrapper" >
-                    <h2 class="r-title">景点</h2>
-                    <div class="bd">
-                        <ul class="clearfix">
-                            <li class="item" v-for="attraction in spots">
-                                <div class="img">
-                                    <a :href="'detail.html?id='+attraction.id">
-                                        <img class="lazy" height="200" width="320" :src="attraction.image" style="display: inline;" >
-                                    </a>
-                                </div>
-                                <dl class="caption">
-                                    <dt>
-                                        <a :href="'detail.html?id='+attraction.id"
-                                           target="_blank"><strong>{{attraction.name}}</strong><br><b>{{attraction.went}}</b>人去过</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="javascript:;" target="_blank">{{attraction.phone}}</a>
-                                        <span class="divide"></span>
-                                        <a href="javascript:;" target="_blank">用时参考：{{attraction.timeCost}}</a>
-                                    </dd>
-                                </dl>
-                            </li>
-                        </ul>
-                    </div>
+<div class="wrapper"  id="app">
+   <ul v-if="!modal" style="padding-top: 10px;
+   width: 60%;
+   margin-left: auto;
+   margin-right: auto;
+   ">
+    <li class="room-li" v-for="(item,index) in spots">
+        <div class="room-wrap">
+            <div  class="info-wrap">
+                <div class="room-image">
+                    <img :src="item.image" alt="无法加载图片">
+                </div>
+                <div class="room-info">
+                    <span class="room-title">{{item.name}}</span>
+                    <span class="room-size">{{item.address}}</span>
+                    <span class="room-price">{{item.price}}<span class="rmb">元</span></span>
+                    <span class="summary">{{item.summary}}</span>
+
                 </div>
             </div>
+            <div class="btn-wrap">
+                <div class="order-btn" @click="viewSpot(item.id, item.introduction)">
+                    <span class="order-text">查看</span>
+                </div>
+                <div class="order-btn" @click="confirmOrder(item.id)">
+                    <span class="order-text">预定</span>
+                </div>
+            </div>
+            
+        </div>
+   </li>
+   </ul>
+   <div class="detail-modal" id="modal" v-show="modal">
+        <div class="close-btn" @click="closeSpot()">
+            <span>关闭</span>
+        </div>
+        <div v-html="introduction">
         </div>
     </div>
 </div>
+
 <div class="footer" id="footer">
     <script>
         $('#footer').load('/views/common/footer.html');
     </script>
 </div>
 </body>
-<script src="../../js/vue/vue.min.js"></script>
-<script src="../../js/vue/system/spot/list.js"></script>
+<script src="/js/vue/vue.min.js"></script>
+<script src="/js/vue/system/spot/list.js"></script>
+<script>
+    $('.input-hotel-startdate').datepicker({
+        language: 'zh-CN'
+    })
+
+    $('.input-hotel-enddate').datepicker({
+        language: 'zh-CN'
+    })
+</script>
 </html>

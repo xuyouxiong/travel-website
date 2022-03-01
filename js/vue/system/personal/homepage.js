@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @version: 
+ * @Author: SunDuncan
+ * @Date: 2022-02-13 19:20:27
+ * @LastEditors: SunDuncan
+ * @LastEditTime: 2022-03-01 19:42:17
+ */
 var user = getUserInfo();
 
 if(!user){
@@ -9,35 +17,33 @@ var vue = new Vue({
     data:{
         owner:{},
         visitors:[],
-        totalView:0,
-        todayView:0
+        datas: {}
     },
     methods:{
+        cancelOrder(id) {
+            ajaxGet("/order/cancelOrder",{id},function (data){
+                window.location.reload()
+            })
+        },
+        initData() {
+             var param = getParams();
+            ajaxGet("/order/getOrder",{uid:param.ownerId},function (data){
+                let datass = data.data
+                datass.forEach(element => {
+                    element.orderInfo = JSON.parse(element.info)
+                });
+                console.log(datass)
+                vue.datas = datass
 
+            })
+        }
     },
     filters:{
 
     },
     mounted:function () {
-        var param = getParams();
-        ajaxGet("/users/get", {id:param.ownerId}, function (data) {
-            vue.owner = data.data;
-        })
-
-        // ajaxGet("/visitor/queryVisitorNumber",{ownerId:param.ownerId},function (data){
-        //     vue.todayView = data.data.todayVisitorNumber;
-        //     vue.totalView = data.data.totalVisitorNumber;
-        //     console.log(data.data)
-        // })
-
-        ajaxGet("/visitor/query",{ownerId:param.ownerId},function (data){
-            vue.visitors = data.data.visitors;
-            console.log(vue.visitors)
-            vue.todayView = data.data.visitorNum.todayVisitorNumber;
-            vue.totalView = data.data.visitorNum.totalVisitorNumber;
-        })
-
-
+        this.initData()
     }
+       
 });
 

@@ -5,7 +5,7 @@
  * @Author: SunDuncan
  * @Date: 2022-02-17 15:12:06
  * @LastEditors: SunDuncan
- * @LastEditTime: 2022-03-01 15:00:28
+ * @LastEditTime: 2022-03-02 03:04:50
 -->
 <!DOCTYPE html>
 <html>
@@ -30,6 +30,9 @@
        .order-wrap {
             display: flex;
             flex-direction: column;
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
        }
 
        .read-info {
@@ -151,31 +154,23 @@
 <div class="wrapper" style="padding-top: 10px;" id="app">
     <div class="order-wrap">
         <div class="read-info"> 
-            <div class="hotel-name">{{info.hotelName}}</div>
+            <div class="hotel-name">{{info.name}}</div>
             <div class="room-info">
-                <div class="room-name">{{info.name}}</div>
-                <div class="room-size">{{info.size}}</div>
-                <div class="time">{{start_date}} ~ {{end_date}}</div>
-                <div class="room-tip">
-                    1.根据防疫部门通知，所有省外来（返）苏州人员，需持健康码绿码和 48 小时内核酸检测阴性证明登记住宿。请在下单前与酒店确认接待政策，以免影响您的入住。<br/>
-                    2.该房型允许携带儿童入住。<br/>
-                    3.该房型不提供加婴儿床。
-                </div>
+                <div class="room-name">地址: {{info.address}}</div>
+                <div class="room-size">简介: {{info.summary}}</div>
             </div>
-            
         </div>
 
         <form class="form-info">
                 <div class="form-name">
-                    <input class="form-control" type="text" placeholder="住客姓名" value="" name="name" id="name">
+                    <input class="form-control" type="text" placeholder="购票人" value="" name="name" id="name">
                 </div>
                 <div class="form-phone">
-                    <input class="form-control" type="text" placeholder="住客电话" value="" name="phone" id="phone">
+                    <input class="form-control" type="text" placeholder="购票联系方式" value="" name="phone" id="phone">
                 </div>
                 <div class="form-name">
                     <input class="form-control" type="text" placeholder="身份证号码" value="" name="id_card" id="id_card">
                 </div>
-
                 <div class="confirm-button">
                     <div class="btn btn-default button-info" @click="goPay()">去支付</div>
                 </div>
@@ -197,7 +192,7 @@
 </div>
 </body>
 <script src="/js/vue/vue.min.js"></script>
-<script src="/js/vue/system/hotel/order.js"></script>
+<script src="/js/vue/system/spot/order.js"></script>
 <script>
     $('.input-hotel-startdate').datepicker({
         language: 'zh-CN'

@@ -4,7 +4,7 @@
  * @Author: SunDuncan
  * @Date: 2022-02-18 16:08:57
  * @LastEditors: SunDuncan
- * @LastEditTime: 2022-03-02 03:18:37
+ * @LastEditTime: 2022-03-02 03:18:19
  */
 var user = getUserInfo();
 var vue = new Vue({
@@ -45,7 +45,7 @@ var vue = new Vue({
         initData() {
             var param = getParams();
             console.log('ss', param)
-            ajaxGet("/room/getDetail",{id: param.id}, function (data) {
+            ajaxGet("/spot/getDetail",{id: param.id}, function (data) {
                 console.log(data)
                 let datas = data.data
                 datas.image = "http://localhost:8082" + datas.image
@@ -57,22 +57,20 @@ var vue = new Vue({
         },
         goPay() {
             $("#modal").show()
-            this.createOrder()
+            // this.createOrder()
             setTimeout(function() {
                 popup("支付成功了");
-                location.href = "/views/hotel/index.html"
-            }, 5000);
+            },5000)
 
+            setTimeout(function() {
+                location.href = "/views/spot/list.html"
+            }, 6000)
         },
         closePay() {
             $("#modal").hide()
         },
         createOrder() {
             let datas = vue.info
-            let start_date = vue.start_date
-            let end_date = vue.end_date
-            datas.startDate = start_date
-            datas.endDate = end_date
             let name = $("#name").val()
             let phone = $("#phone").val()
             let idCard = $("#id_card").val()
@@ -83,12 +81,9 @@ var vue = new Vue({
                 name,
                 phone,
                 idCard,
-                hotelId: datas.hotelId,
-                hotelName: datas.hotelName,
-                roomId: datas.id,
                 price: datas.price,
-                type: '酒店',
-                roomName: datas.name
+                type: '门票',
+                hotel_id: datas.uid
             }, function (data) {
                console.log(data)
             })
