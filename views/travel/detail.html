@@ -48,18 +48,18 @@
     <div id="pagelet-block-a674ace86856fc38da868e9d1ed7b49c" class="pagelet-block">
             <div class="vt_center">
                 <div class="ding _j_ding_father">
-                    <a role="button" data-japp="articleding" rel="nofollow" data-iid="12655354" data-vote="7" class="up_act " title="顶">顶</a>
-                    <div class="num _j_up_num topvote12655354">{{detail.thumbsupnum}}</div>
+                    <!-- <a role="button" data-japp="articleding" rel="nofollow" data-iid="12655354" data-vote="7" class="up_act " title="顶">顶</a> -->
+                    <!-- <div class="num _j_up_num topvote12655354">{{detail.thumbsupnum}}</div> -->
                 </div>
                 <div class="person" data-cs-t="ginfo_person_operate">
-                    <a href="javascript:;" target="_blank" class="per_pic">
+                    <a href="javascript:;" class="per_pic">
                         <img width="120" height="120" :src="detail.author.headImgUrl">
                     </a>
                     <strong>
-                        <a href="javascript:;" target="_blank" class="per_name">{{detail.author.nickname}}({{detail.author.city}}) </a>
+                        <a href="javascript:;" class="per_name">{{detail.author.nickname}}({{detail.author.city}}) </a>
                     </strong>
 
-                    <a href="javascript:;" target="_blank" class="per_grade" title="LV.9">LV.9</a>
+                    <a href="javascript:;" tclass="per_grade" title="LV.9">LV.9</a>
                     <a href="javascript:void(0);" class="per_attention" data-japp="following" data-uid="67648461" data-follow_class="hide">
                         <img src="http://images.mafengwo.net/images/home/tweet/btn_sfollow.gif" width="38" height="13" border="0" title="关注TA">
                     </a>
@@ -68,24 +68,6 @@
                         <span><i class="ico_view"></i>{{detail.viewnum}}/{{detail.replynum}}</span>
                     </div>
                 </div>
-
-                <div class="bar_share _j_share_father _j_top_share_group">
-                    <div class="bs_collect ">
-                        <a href="javascript:void(0);" rel="nofollow" title="收藏" class="bs_btn _j_do_fav" data-ctime="2019-05-07 21:16:29"><i></i><span>{{detail.favornum}}</span><strong>收藏</strong></a>
-                    </div>
-                    <div class="bs_share">
-                        <a href="javascript:void(0);" rel="nofollow" title="分享" class="bs_btn"><i></i><span>{{detail.sharenum}}</span><strong>分享</strong></a>
-                        <div class="bs_pop clearfix" style="display: none;">
-                            <a title="分享到新浪微博" rel="nofollow" role="button" class="sina"></a>
-                            <a title="分享到QQ空间" rel="nofollow" role="button" class="zone"></a>
-                            <a title="分享到微信" rel="nofollow" role="button" class="weixin"></a>
-                        </div>
-                    </div>
-                    <div class="bs_collect ">
-                        <a :href="'/views/travel/input.html?id='+detail.id"  class="bs_btn _j_goto_comment" ><i></i><strong>编辑</strong></a>
-                    </div>
-                </div>
-
             </div>
         </div>
 
@@ -1286,81 +1268,6 @@
                 </div>
             </div>
 
-        </div>
-        <div class="view_side">
-            <div class="relations _j_stas_content">
-                <div id="pagelet-block-b50249fefe90f4816744a1eed56a7049" class="pagelet-block"
-                     data-api=":note:pagelet:rightMddApi" data-params="{&quot;iid&quot;:&quot;12655354&quot;}"
-                     data-async="1" data-controller="">
-                    <div class="slide-right-container">
-                        <div class="relation_mdd">相关目的地： &nbsp;&nbsp;
-                            <a :href="'/views/destination/guide.html?id='+t.id" target="_blank"
-                               title="t.name" class="_j_mdd_stas" v-for="t in toasts">{{t.name}} &nbsp;&nbsp;</a>
-                        </div>
-                        <div class="its_others">
-                            <div class="mdd_info">
-                                <a :href="'/views/destination/guide?id='+dest.id" title="detail.name" class="_j_mdd_stas" target="_blank">
-                                    <img :src="dest.coverUrl"
-                                         width="240px">
-                                    <i></i>
-                                    <strong>{{dest.name}}</strong>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="side_sticky _j_sticky_block">
-                <div id="pagelet-block-cf05fa839072c3781ee6b0ff89ced384" class="pagelet-block">
-                    <div class="mainmdd_rel_notes _j_topblock" id="_j_mainmdd_rel_gls">
-                        <div class="notes_gonglve" style="margin-bottom: 0">
-                            <div class="side_title">相关攻略</div>
-                            <div class="gonglve_slide gs1" id="_j_gl_slide_container">
-                                <ul class="gs_content" style="left: 0px;">
-                                    <li v-for="s in strategies">
-                                        <a :href="'/views/strategy/detail.html?id='+s.id" target="_blank" class="_j_mddrel_gl_item"
-                                           title="s.title"><img :src="s.coverUrl">
-                                            <div class="bg"></div><span><i></i>{{s.viewnum}}</span>
-                                            <h3>{{s.title}}</h3>
-                                        </a>
-                                    </li>
-
-                                </ul>
-                                <ul class="gs_nav gs_nav3">
-                                    <li data-id="0" class="gs_nav_item1 _j_gl_item_switch on"></li>
-                                    <li data-id="1" class="gs_nav_item2  _j_gl_item_switch"></li>
-                                    <li data-id="2" class="gs_nav_item3  _j_gl_item_switch"></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="pagelet-block-9ec395fc9c1fc520835dc7de18ceacb1" class="pagelet-block">
-                <div class="mainmdd_rel_notes _j_topblock" id="_j_mainmdd_rec_gls">
-                    <div class="notes_gonglve" style="margin-bottom: 0">
-                        <div class="side_title">相关游记</div>
-                        <div class="gonglve_slide gs1" id="_j_rec_slide_container">
-                            <ul class="gs_content" style="left: 0px;">
-                                <li  v-for="t in travels" >
-                                    <a :href="'/views/travel/detail.html?id='+t.id" target="_blank" class="_j_mddrel_gl_item"
-                                       title="{{t.title}}">
-                                        <img :src="t.coverUrl">
-                                        <div class="bg"></div><span><i></i>{{t.viewnum}}</span>
-                                        <h3>{{t.title}}</h3>
-                                    </a>
-                                </li>
-
-                            </ul>
-                            <ul class="gs_nav gs_nav3">
-                                <li data-id="0" class="gs_nav_item1 _j_gl_item_switch on"></li>
-                                <li data-id="1" class="gs_nav_item2  _j_gl_item_switch"></li>
-                                <li data-id="2" class="gs_nav_item3  _j_gl_item_switch"></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
