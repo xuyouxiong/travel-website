@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @version: 
+ * @Author: SunDuncan
+ * @Date: 2022-02-13 19:20:27
+ * @LastEditors: SunDuncan
+ * @LastEditTime: 2022-03-03 17:21:39
+ */
 var user = getUserInfo();
 var vue = new Vue({
     el:"#app",
@@ -13,7 +21,6 @@ var vue = new Vue({
             var el = event.currentTarget;
             $(".orderBy").closest("div").removeClass("on");
             $(el).closest("div").addClass("on");
-
             $("#orderType").val(orderType);
 
             this.commPage(1);
@@ -21,9 +28,14 @@ var vue = new Vue({
         },
         commPage:function (page) {
             var param = getParams();
+            let query = {}
+            if (param) {
+                query.keyword = decodeURIComponent(param.keyword)
+                
+            }
             var p = $("#travelForm").serialize() + "&currentPage=" + page;
             //游记分页
-            ajaxGet("/travels/query?"+p,{}, function (data) {
+            ajaxGet("/travels/query?"+p,query, function (data) {
                 vue.page = data.data;
                 buildPage(vue.page.current, vue.page.pages,vue.doPage);
             })
@@ -33,14 +45,26 @@ var vue = new Vue({
         },
         conditionChange:function(){
             this.commPage(1);
+        },
+        initData() {
+            var param = getParams()
+            console.log(param)
+            let query = {}
+            if(param) {
+                query = {
+                    keyword: decodeURIComponent(param.keyword)
+                }
+            }
+            ajaxGet("/travels/query",query, function (data) {
+                vue.page = data.data;
+                buildPage(vue.page.current, vue.page.pages,vue.doPage);
+            })
         }
     },
     mounted:function () {
+        this.initData()
         //游记分页
-        ajaxGet("/travels/query",{}, function (data) {
-            vue.page = data.data;
-            buildPage(vue.page.current, vue.page.pages,vue.doPage);
-        })
+       
     }
 });
 

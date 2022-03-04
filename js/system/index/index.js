@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @version: 
+ * @Author: SunDuncan
+ * @Date: 2022-02-13 19:20:27
+ * @LastEditors: SunDuncan
+ * @LastEditTime: 2022-03-02 19:02:44
+ */
 $(function () {
     var playTimer = null;
     var playIdx = 0;

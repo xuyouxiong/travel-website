@@ -35,11 +35,36 @@ var vue = new Vue({
             this.doPage(1);
 
         },
-        doPage:function (page) {
-            console.log($("#searchForm").serialize());
+        getRecommend(e, type) {
+            $(".uptime_p a").removeClass("upt_on");
+            $(e.currentTarget).addClass("upt_on");
 
+            $("#searchForm input[name='type']").val($(".s-on").data("type"));
+            $("#searchForm input[name='refid']").val($(".s-on").data("refid"));
+            $("#searchForm input[name='orderBy']").val($(".upt_on").data("v"));
+            var param = getParams()
+            let query = {}
+            if (param.keyword) {
+                query.keyword =  decodeURIComponent(param.keyword)
+            }
+            console.log($("#searchForm").serialize())
+            ajaxGet("/strategies/strategyRecommend?" + $("#searchForm").serialize(), query,function (data) {
+                console.log(data)
+                vue.page = data.data;
+                buildPage(1, 1,vue.doPage);
+            })
+        },
+        doPage:function (page) {
+            var param = getParams()
+            console.log(param)
+            let query = {}
+            if (param.keyword) {
+                query.keyword =  decodeURIComponent(param.keyword)
+            }
             $("#searchForm input[name='currentPage']").val(page);
-            ajaxGet("/strategies/query",$("#searchForm").serialize(), function (data) {
+            console.log($("#searchForm").serialize())
+            ajaxGet("/strategies/query?" + $("#searchForm").serialize(), query,function (data) {
+                console.log(data)
                 vue.page = data.data;
                 buildPage(vue.page.current, vue.page.pages,vue.doPage);
             })

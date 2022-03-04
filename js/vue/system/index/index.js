@@ -4,7 +4,7 @@
  * @Author: SunDuncan
  * @Date: 2022-02-13 19:20:27
  * @LastEditors: SunDuncan
- * @LastEditTime: 2022-02-14 18:28:07
+ * @LastEditTime: 2022-03-02 19:12:35
  */
     var vue = new Vue({
     el:"#app",
@@ -23,7 +23,15 @@
                 popup("请先输入搜索关键字");
                 return;
             }
-            searchByType(type, keyword);
+            if (type == 0) {
+                console.log("sadasdasdasd")
+                location.href = "/views/strategy/index.html?keyword=" + keyword
+            }
+
+            if (type == 1) {
+                console.log(111111111)
+                location.href = "/views/travel/index.html?keyword=" + keyword
+            }
         },
         orderBy:function (type) {
             $("#orderType").val(type);

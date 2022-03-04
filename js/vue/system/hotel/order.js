@@ -4,7 +4,7 @@
  * @Author: SunDuncan
  * @Date: 2022-02-18 16:08:57
  * @LastEditors: SunDuncan
- * @LastEditTime: 2022-03-02 03:18:37
+ * @LastEditTime: 2022-03-03 17:56:21
  */
 var user = getUserInfo();
 var vue = new Vue({
@@ -60,8 +60,11 @@ var vue = new Vue({
             this.createOrder()
             setTimeout(function() {
                 popup("支付成功了");
-                location.href = "/views/hotel/index.html"
             }, 5000);
+
+            setTimeout(function() {
+                location.href = "/views/hotel/index.html"
+            }, 6000);
 
         },
         closePay() {
