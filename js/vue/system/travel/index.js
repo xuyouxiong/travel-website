@@ -4,7 +4,7 @@
  * @Author: SunDuncan
  * @Date: 2022-02-13 19:20:27
  * @LastEditors: SunDuncan
- * @LastEditTime: 2022-03-03 17:21:39
+ * @LastEditTime: 2022-03-16 15:45:17
  */
 var user = getUserInfo();
 var vue = new Vue({
@@ -50,7 +50,7 @@ var vue = new Vue({
             var param = getParams()
             console.log(param)
             let query = {}
-            if(param) {
+            if(param.keyword) {
                 query = {
                     keyword: decodeURIComponent(param.keyword)
                 }
