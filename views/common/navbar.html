@@ -4,7 +4,7 @@
  * @Author: SunDuncan
  * @Date: 2022-02-13 19:20:27
  * @LastEditors: SunDuncan
- * @LastEditTime: 2022-03-16 16:17:41
+ * @LastEditTime: 2022-03-16 18:18:21
 -->
 <div class="lww_header">
     <div class="header_wrap">
@@ -29,7 +29,7 @@
                 <a href="/views/personal/homepage.html?ownerId=">
                     <img src="/images/default.jpg" id="login_user_headUrl" />
                     <!-- <i class="icon_caret_down"></i> -->
-                </a>｜ <span style="cursor: pointer;">退出</span>
+                </a>｜ <span style="cursor: pointer;" id="logout">退出</span>
             </div>
         </div>
         <div class="login-out" >
@@ -55,6 +55,12 @@
         $(".login_info").css("display", "none")
     }
     $("li[name="+currentNav+"]").addClass("header_nav_active");
+
+    $("#logout").click(function(res) {
+        Cookies.set('user', null);
+        Cookies.set('token', null);
+        location.href = "/"
+    })
 </script>
 
 
