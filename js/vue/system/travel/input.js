@@ -4,7 +4,7 @@
  * @Author: SunDuncan
  * @Date: 2022-02-13 19:20:27
  * @LastEditors: SunDuncan
- * @LastEditTime: 2022-02-15 23:12:20
+ * @LastEditTime: 2022-03-17 18:59:21
  */
 var vue = new Vue({
     el:"#app",
@@ -29,7 +29,8 @@ var vue = new Vue({
             ajaxPost("/travels/saveOrUpdate", param, function (data) {
                 //还缺一参数：目的地id
                 var destId = $("#region").val();
-                // window.location.href = "/views/travel/detail.html?id=" + data.data + "&destId=" + destId;
+                console.log(data)
+                window.location.href = "/views/travel/detail.html?id=" + data.data.id + "&destId=" + destId;
             })
         }
     },

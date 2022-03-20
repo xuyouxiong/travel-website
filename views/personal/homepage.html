@@ -4,7 +4,7 @@
  * @Author: SunDuncan
  * @Date: 2022-02-13 19:20:27
  * @LastEditors: SunDuncan
- * @LastEditTime: 2022-03-01 19:38:26
+ * @LastEditTime: 2022-03-17 19:02:12
 -->
 <!DOCTYPE html>
 <html>
@@ -162,6 +162,9 @@
                         </div>
                         <div class="cancel-btn" v-if="item.status == 1">
                             <span class="cancel-span" @click="cancelOrder(item.id)">取消订单</span>
+                        </div>
+                        <div class="cancel-btn" v-if="item.status != 1">
+                            <span>已取消</span>
                         </div>
                 </li>
             </ul>

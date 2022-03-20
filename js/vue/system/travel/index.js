@@ -4,7 +4,7 @@
  * @Author: SunDuncan
  * @Date: 2022-02-13 19:20:27
  * @LastEditors: SunDuncan
- * @LastEditTime: 2022-03-16 15:45:17
+ * @LastEditTime: 2022-03-17 16:39:50
  */
 var user = getUserInfo();
 var vue = new Vue({
@@ -29,7 +29,7 @@ var vue = new Vue({
         commPage:function (page) {
             var param = getParams();
             let query = {}
-            if (param) {
+            if (param.keyword) {
                 query.keyword = decodeURIComponent(param.keyword)
                 
             }
